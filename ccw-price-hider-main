@@ -24,6 +24,8 @@
         tbody tr > :nth-child(7),
         tbody tr > :nth-child(8),
         tbody tr > :nth-child(9),
+        td.text-right.lp-col.py-2 > div,
+        #search-results > table:nth-child(2) > thead > tr > th.text-right.lp-col,
         .financial-summary
     `;
 
