@@ -1,6 +1,14 @@
 # ccw-price-hider
 JS scripts for blocking pricing view on CCW
 
+Before: <img width="1467" height="931" alt="image" src="https://github.com/user-attachments/assets/ed354f73-f00d-4c1a-94a2-6fb8f121809d" />
+
+After: <img width="1493" height="791" alt="image" src="https://github.com/user-attachments/assets/e3b691b9-6550-4566-8d48-05c8c2f4edee" />
+
+Before: <img width="1822" height="719" alt="image" src="https://github.com/user-attachments/assets/d9e0d4bf-7953-4e0b-baa8-72b59527a0fe" />
+
+After: <img width="1817" height="715" alt="image" src="https://github.com/user-attachments/assets/72944567-488a-401a-8d20-7e3f920dc758" />
+
 ---
 
 ## How to Install the Cisco CCW Pricing Hider
