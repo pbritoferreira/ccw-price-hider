@@ -1,0 +1,77 @@
+// ==UserScript==
+// @name         Cisco CCW Pricing Hider
+// @namespace    http://tampermonkey.net/
+// @version      0.2
+// @description  Hides specific pricing-related elements on Cisco CCW pages.
+// @author       Pedro de Brito Ferreira (pedebrit)
+// @match        https://apps.cisco.com/ccw/cpc/*
+// @match        http://apps.cisco.com/ccw/cpc/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    //console.log('Tampermonkey script running!');
+
+    // Define the single, combined CSS selector for all elements to hide
+    const selectorsToHide = `
+        thead tr > :nth-child(5),
+        thead tr > :nth-child(7),
+        thead tr > :nth-child(8),
+        thead tr > :nth-child(9),
+        tbody tr > :nth-child(5),
+        tbody tr > :nth-child(7),
+        tbody tr > :nth-child(8),
+        tbody tr > :nth-child(9),
+        .financial-summary
+    `;
+
+    // Function to apply the hiding style
+    function applyHiding() {
+        //console.log('Attempting to hide elements...');
+        const elementsToHide = document.querySelectorAll(selectorsToHide);
+        let hiddenCount = 0;
+        elementsToHide.forEach(el => {
+            if (el && el.style.display !== 'none') { // Only hide if not already hidden
+                el.style.display = 'none';
+                hiddenCount++;
+            }
+        });
+        if (hiddenCount > 0) {
+            console.log(`Elements hidden: ${hiddenCount}`);
+        }
+    }
+
+    // --- Initial Hiding Attempts ---
+
+    // 1. Run immediately on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', applyHiding);
+
+    // 2. Run again after the full page (including images, etc.) has loaded
+    window.addEventListener('load', applyHiding);
+
+    // 3. Run after a short delay, to catch elements rendered by initial JS execution
+    setTimeout(applyHiding, 100); // Small delay
+    setTimeout(applyHiding, 500); // Medium delay
+    setTimeout(applyHiding, 2000); // Longer delay, just in case
+
+    // --- Dynamic Content Hiding (The Robust Solution) ---
+
+    // Create a MutationObserver to watch for DOM changes
+    const observer = new MutationObserver((mutationsList, observer) => {
+        // For each change, re-apply the hiding logic
+        // This is efficient because applyHiding only changes elements that aren't already hidden
+        applyHiding();
+    });
+
+    // Start observing the entire document body for changes
+    // subtree: true means it watches for changes in children of children, etc.
+    // childList: true means it watches for additions/removals of child nodes
+    // attributes: true means it watches for changes in attributes (less critical for display:none)
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Optional: You might want to disconnect the observer if you're sure all elements are loaded
+    // and no more dynamic content will appear, but for continuous hiding, keep it active.
+    // Example: setTimeout(() => observer.disconnect(), 10000); // Disconnect after 10 seconds
+})();
