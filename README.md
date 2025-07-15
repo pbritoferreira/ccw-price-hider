@@ -9,6 +9,8 @@ Before: <img width="1822" height="719" alt="image" src="https://github.com/user-
 
 After: <img width="1817" height="715" alt="image" src="https://github.com/user-attachments/assets/72944567-488a-401a-8d20-7e3f920dc758" />
 
+If you find this is useful, I would love if you could ping me on webex (pedebrit) and let me know that!
+
 ---
 
 ## How to Install the Cisco CCW Pricing Hider
@@ -81,4 +83,5 @@ Now we'll add the specific code that does the hiding.
 ---
 
 This script only changes what you see on your screen; it doesn't affect the actual pricing data or CCW. It's a purely cosmetic and safe way to customize your CCW experience.  
- 
+
+If you find this is useful, I would love if you could ping me on webex (pedebrit) and let me know that!
